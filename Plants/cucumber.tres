@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PlantData" load_steps=2 format=3 uid="uid://bciv1suo51f81"]
+
+[ext_resource type="Script" path="res://Plants/plant_data.gd" id="1_8asac"]
+
+[resource]
+script = ExtResource("1_8asac")
+plant_name = "Cucmber"
+min_water = 7.0
+min_sun = 1.2
+preferred_neighbor_plants = Array[String](["Parsnip", "Lettuce"])
+plant_sprites = Rect2i(0, 224, 64, 16)

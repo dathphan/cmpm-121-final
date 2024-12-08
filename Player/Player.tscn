@@ -1,0 +1,39 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyk4wpq5t181c"]
+
+[ext_resource type="Script" path="res://Player/player_movement.gd" id="1_nu24r"]
+[ext_resource type="Texture2D" uid="uid://di37j3b4vmaeg" path="res://icon.svg" id="2_ckmso"]
+[ext_resource type="PackedScene" uid="uid://bvcxlvuc4x4cd" path="res://Plants/Plant.tscn" id="3_wia8r"]
+[ext_resource type="Script" path="res://Player/player_actions.gd" id="3_yam5s"]
+[ext_resource type="Resource" uid="uid://bciv1suo51f81" path="res://Plants/cucumber.tres" id="4_6jnva"]
+[ext_resource type="Script" path="res://Plants/plant_data.gd" id="4_wtxox"]
+[ext_resource type="Resource" uid="uid://q1s8eun8qfoe" path="res://Plants/lettuce.tres" id="6_pntos"]
+[ext_resource type="Resource" uid="uid://b8a3saojkiedm" path="res://Plants/parsnip.tres" id="7_urxfa"]
+[ext_resource type="Resource" uid="uid://e2ixxvyr1eeh" path="res://Plants/wheat.tres" id="8_24mpn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyg6x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ckmso")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fg1w3"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_nu24r")
+
+[node name="Actions" type="Node" parent="."]
+script = ExtResource("3_yam5s")
+plant_prefab = ExtResource("3_wia8r")
+plant_datas = Array[ExtResource("4_wtxox")]([ExtResource("4_6jnva"), ExtResource("6_pntos"), ExtResource("7_urxfa"), ExtResource("8_24mpn")])
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_hyg6x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fg1w3")
