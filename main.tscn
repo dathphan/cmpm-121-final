@@ -1,21 +1,28 @@
-[gd_scene load_steps=20 format=4 uid="uid://o6hfkcb076nu"]
+[gd_scene load_steps=27 format=4 uid="uid://o6hfkcb076nu"]
 
 [ext_resource type="Script" path="res://World/map.gd" id="1_8g07x"]
 [ext_resource type="Script" path="res://Game Managers/game_manager.gd" id="1_xgfuw"]
 [ext_resource type="PackedScene" uid="uid://cyk4wpq5t181c" path="res://Player/Player.tscn" id="2_bhyx8"]
+[ext_resource type="Script" path="res://Game Managers/save_load_system.gd" id="2_ginba"]
 [ext_resource type="TileSet" uid="uid://dp7w6nsvbk7cd" path="res://addons/sprout_lands_premium_tilesets/base/scenes/water_tile_set.tres" id="2_xom1k"]
 [ext_resource type="TileSet" uid="uid://bkcb3a7b6ggfu" path="res://addons/sprout_lands_premium_tilesets/base/scenes/stone_tile_set.tres" id="3_0somv"]
 [ext_resource type="TileSet" uid="uid://cgc4ljxvteaci" path="res://addons/sprout_lands_premium_tilesets/base/scenes/soil_tile_set.tres" id="4_7hdi7"]
+[ext_resource type="Resource" uid="uid://q1s8eun8qfoe" path="res://Plants/lettuce.tres" id="5_0e0m5"]
 [ext_resource type="TileSet" uid="uid://b0mmolxvhu2ug" path="res://addons/sprout_lands_premium_tilesets/base/scenes/dark_soil_tile_set.tres" id="5_rle81"]
+[ext_resource type="Resource" uid="uid://b8a3saojkiedm" path="res://Plants/parsnip.tres" id="6_74f8j"]
 [ext_resource type="TileSet" uid="uid://b8w5f8bb1vvc6" path="res://addons/sprout_lands_premium_tilesets/base/scenes/grass_tile_set.tres" id="6_ho2cm"]
+[ext_resource type="Resource" uid="uid://e2ixxvyr1eeh" path="res://Plants/wheat.tres" id="7_g7au1"]
 [ext_resource type="TileSet" uid="uid://dbjjxavpke7hr" path="res://addons/sprout_lands_premium_tilesets/base/scenes/dark_grass_tile_set.tres" id="7_wb3w7"]
 [ext_resource type="TileSet" uid="uid://dmic1h12aascn" path="res://addons/sprout_lands_premium_tilesets/base/scenes/path_tile_set.tres" id="8_miwt1"]
+[ext_resource type="PackedScene" uid="uid://bvcxlvuc4x4cd" path="res://Plants/Plant.tscn" id="8_mxuba"]
 [ext_resource type="TileSet" uid="uid://blpppkiffse27" path="res://addons/sprout_lands_premium_tilesets/base/scenes/bush_tile_set.tres" id="9_62nxh"]
 [ext_resource type="TileSet" uid="uid://d3cl1rpa5otg6" path="res://addons/sprout_lands_premium_tilesets/base/scenes/fence_tile_set.tres" id="10_pc6ht"]
 [ext_resource type="TileSet" uid="uid://d2ko6dfc7nim7" path="res://addons/sprout_lands_premium_tilesets/base/scenes/objects_tile_set.tres" id="11_kifpp"]
 [ext_resource type="TileSet" uid="uid://bwu2j7r7pyan5" path="res://addons/sprout_lands_premium_tilesets/base/scenes/walls_tile_set.tres" id="12_s37c7"]
 [ext_resource type="TileSet" uid="uid://cw6ud3j2f1j8e" path="res://addons/sprout_lands_premium_tilesets/base/scenes/furniture_tile_set.tres" id="13_phe7h"]
 [ext_resource type="Texture2D" uid="uid://bhs1hul4xmny5" path="res://addons/sprout_lands_premium_tilesets/assets/Tilesets/Building parts/Wooden_House_Roof_Tilset.png" id="14_6mms6"]
+[ext_resource type="Resource" uid="uid://bciv1suo51f81" path="res://Plants/cucumber.tres" id="17_0yynl"]
+[ext_resource type="Script" path="res://Plants/plant_data.gd" id="17_075eu"]
 [ext_resource type="PackedScene" uid="uid://4gore8wryplv" path="res://UI/ui_manager.tscn" id="17_ee42f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0kpje"]
@@ -126,8 +133,14 @@ texture_filter = 1
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_xgfuw")
 
-[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("tilled_tilemaps", "ground_tilemaps", "obstacle_tilemaps")]
+[node name="SaveLoadSystem" type="Node" parent="GameManager"]
+script = ExtResource("2_ginba")
+
+[node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("plant_container", "tilled_tilemaps", "ground_tilemaps", "obstacle_tilemaps")]
 script = ExtResource("1_8g07x")
+plant_datas = Array[ExtResource("17_075eu")]([ExtResource("17_0yynl"), ExtResource("5_0e0m5"), ExtResource("6_74f8j"), ExtResource("7_g7au1")])
+plant_prefab = ExtResource("8_mxuba")
+plant_container = NodePath("../Plants")
 tilled_tilemaps = [NodePath("Grass")]
 ground_tilemaps = [NodePath("Grass"), NodePath("DarkSoil"), NodePath("Soil")]
 obstacle_tilemaps = [NodePath("Fence"), NodePath("Bush"), NodePath("Walls"), NodePath("Objects")]
@@ -203,9 +216,6 @@ unique_name_in_owner = true
 position = Vector2(576, 320)
 map = NodePath("../Map")
 
-[node name="Actions" parent="Player" index="0" node_paths=PackedStringArray("plant_container")]
-plant_container = NodePath("../../Plants")
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(508, 303)
 zoom = Vector2(2, 2)
@@ -219,6 +229,6 @@ zoom = Vector2(2, 2)
 [connection signal="new_turn" from="GameManager" to="CanvasLayer/UI Manager" method="update_day"]
 [connection signal="score_updated" from="GameManager" to="CanvasLayer/UI Manager" method="update_score"]
 [connection signal="player_moved_to" from="Player" to="CanvasLayer/UI Manager" method="update_current_cell"]
-[connection signal="plant_status_changed" from="Player/Actions" to="CanvasLayer/UI Manager" method="update_current_cell"]
+[connection signal="action_performed" from="Player/Actions" to="CanvasLayer/UI Manager" method="update_current_cell"]
 
 [editable path="Player"]
