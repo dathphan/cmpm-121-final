@@ -29,6 +29,16 @@ func handle_inputs():
 		sow_at_current_cell()
 
 
+func decide_action():
+	update_vars()
+	
+	var cell = map.get_cell_from_coord(_target_cell)
+	if (cell.get_plant() == null):
+		plant_at_current_cell()
+	else:
+		sow_at_current_cell()
+
+
 func plant_at_current_cell():
 	update_vars()
 	if map.create_random_plant(_target_cell):

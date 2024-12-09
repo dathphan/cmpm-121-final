@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://o6hfkcb076nu"]
+[gd_scene load_steps=29 format=4 uid="uid://o6hfkcb076nu"]
 
 [ext_resource type="Script" path="res://World/map.gd" id="1_8g07x"]
 [ext_resource type="Script" path="res://Game Managers/game_manager.gd" id="1_xgfuw"]
@@ -24,6 +24,7 @@
 [ext_resource type="Resource" uid="uid://bciv1suo51f81" path="res://Plants/cucumber.tres" id="17_0yynl"]
 [ext_resource type="Script" path="res://Plants/plant_data.gd" id="17_075eu"]
 [ext_resource type="PackedScene" uid="uid://4gore8wryplv" path="res://UI/ui_manager.tscn" id="17_ee42f"]
+[ext_resource type="Script" path="res://rtl_dpad.gd" id="25_edt3f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0kpje"]
 texture = ExtResource("14_6mms6")
@@ -127,6 +128,18 @@ terrain_set_0/terrain_0/name = "Roof"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_0kpje")
 
+[sub_resource type="FontFile" id="FontFile_g3num"]
+cache/0/128/0/ascent = 0.0
+cache/0/128/0/descent = 0.0
+cache/0/128/0/underline_position = 0.0
+cache/0/128/0/underline_thickness = 0.0
+cache/0/128/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
@@ -214,19 +227,90 @@ tile_set = SubResource("TileSet_lwte8")
 
 [node name="Plants" type="Node2D" parent="."]
 
-[node name="Player" parent="." node_paths=PackedStringArray("map") instance=ExtResource("2_bhyx8")]
+[node name="Player" parent="." node_paths=PackedStringArray("map", "up_button", "down_button", "left_button", "right_button") instance=ExtResource("2_bhyx8")]
 unique_name_in_owner = true
-position = Vector2(576, 320)
+position = Vector2(584.5, 328.5)
 map = NodePath("../Map")
+up_button = NodePath("../CanvasLayer/UI Manager/Controls/Up")
+down_button = NodePath("../CanvasLayer/UI Manager/Controls/Down")
+left_button = NodePath("../CanvasLayer/UI Manager/Controls/Left")
+right_button = NodePath("../CanvasLayer/UI Manager/Controls/Right")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(508, 303)
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI Manager" parent="CanvasLayer" instance=ExtResource("17_ee42f")]
+
+[node name="Plant Score" parent="CanvasLayer/UI Manager" index="0"]
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Cell Data" parent="CanvasLayer/UI Manager" index="2"]
+anchor_left = 0.69625
+anchor_top = 0.674074
+anchor_right = 1.0
+anchor_bottom = 1.00093
+
+[node name="Save Load Menu" parent="CanvasLayer/UI Manager" index="4"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_left = -454.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 566.0
+grow_horizontal = 0
+grow_vertical = 1
+
+[node name="Label" parent="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer" index="0"]
+theme_override_font_sizes/font_size = 128
+
+[node name="Controls" parent="CanvasLayer/UI Manager" index="5"]
+visible = false
+modulate = Color(1, 1, 1, 0.701961)
+anchor_left = 0.0120833
+anchor_top = 0.978704
+anchor_right = 0.0120833
+anchor_bottom = 0.978704
+offset_top = -779.0
+offset_right = 781.0
+grow_horizontal = 1
+grow_vertical = 0
+script = ExtResource("25_edt3f")
+
+[node name="Up" parent="CanvasLayer/UI Manager/Controls" index="0"]
+custom_minimum_size = Vector2(256, 256)
+theme_override_fonts/font = SubResource("FontFile_g3num")
+theme_override_font_sizes/font_size = 128
+text = "🔼"
+
+[node name="Down" parent="CanvasLayer/UI Manager/Controls" index="1"]
+custom_minimum_size = Vector2(256, 256)
+theme_override_fonts/font = SubResource("FontFile_g3num")
+theme_override_font_sizes/font_size = 128
+text = "🔽"
+
+[node name="Left" parent="CanvasLayer/UI Manager/Controls" index="2"]
+auto_translate_mode = 2
+custom_minimum_size = Vector2(256, 256)
+theme_override_fonts/font = SubResource("FontFile_g3num")
+theme_override_font_sizes/font_size = 128
+text = "◀️"
+
+[node name="Right" parent="CanvasLayer/UI Manager/Controls" index="3"]
+custom_minimum_size = Vector2(256, 256)
+theme_override_fonts/font = SubResource("FontFile_g3num")
+theme_override_font_sizes/font_size = 128
+text = "▶️"
+
+[node name="Action" parent="CanvasLayer/UI Manager/Controls" index="4"]
+custom_minimum_size = Vector2(256, 256)
+theme_override_fonts/font = SubResource("FontFile_g3num")
+theme_override_font_sizes/font_size = 128
 
 [connection signal="game_ended" from="GameManager" to="CanvasLayer/UI Manager" method="enable_game_over_ui"]
 [connection signal="new_turn" from="GameManager" to="GameManager/SaveLoadSystem" method="autosave"]
@@ -239,6 +323,8 @@ zoom = Vector2(2, 2)
 [connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Load" to="GameManager/SaveLoadSystem" method="load_manual_save"]
 [connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Undo" to="GameManager/SaveLoadSystem" method="load_prev_autosave"]
 [connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Recover" to="GameManager/SaveLoadSystem" method="load_recover_save"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Langauge" to="CanvasLayer/UI Manager" method="cycle_language"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Controls/Action" to="Player/Actions" method="decide_action"]
 
 [editable path="Player"]
 [editable path="CanvasLayer/UI Manager"]

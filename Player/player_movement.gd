@@ -2,6 +2,10 @@ class_name Player extends CharacterBody2D
 
 # Object References
 @export var map: Map
+@export var up_button: Button
+@export var down_button: Button
+@export var left_button: Button
+@export var right_button: Button
 
 # Parameters
 @export var max_speed: float = 64.0
@@ -39,7 +43,19 @@ func _process(delta):
 	update_move()
 
 func set_input_direction():
-	_input_dir = Vector2(Input.get_axis("ui_left", "ui_right"), Input.get_axis("ui_up", "ui_down")).normalized()
+	var x_axis: float = Input.get_axis("ui_left", "ui_right")
+	var y_axis: float = Input.get_axis("ui_up", "ui_down")
+	
+	if up_button.get_draw_mode() == 1:
+		y_axis -= 1
+	if down_button.get_draw_mode() == 1:
+		y_axis += 1
+	if left_button.get_draw_mode() == 1:
+		x_axis -= 1
+	if right_button.get_draw_mode() == 1:
+		x_axis += 1
+	
+	_input_dir = Vector2(x_axis, y_axis).normalized()
 
 func update_move():
 	if not game_active:

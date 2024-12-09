@@ -24,8 +24,8 @@ current_cell_plant = NodePath("Cell Data/Plant")
 current_cell_sun = NodePath("Cell Data/SunLVL")
 current_cell_water = NodePath("Cell Data/WaterLVL")
 game_over_panel = NodePath("Game Over")
-score_display = NodePath("Game Over/Score")
-results_display = NodePath("Game Over/Results")
+score_display = NodePath("Game Over/VBoxContainer/Score")
+results_display = NodePath("Game Over/VBoxContainer/Results")
 save_load_panel = NodePath("Save Load Menu")
 metadata/_edit_use_anchors_ = true
 
@@ -86,7 +86,7 @@ anchor_bottom = 0.321839
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wix26")
-text = "Current Cell"
+text = "CURRENT_CELL"
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
@@ -95,12 +95,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0552147
 anchor_top = 0.321839
-anchor_right = 0.773006
+anchor_right = 0.972393
 anchor_bottom = 0.586207
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wix26")
-text = "Plant: None"
+text = "PLANT"
 metadata/_edit_use_anchors_ = true
 
 [node name="SunLVL" type="Label" parent="Cell Data"]
@@ -108,12 +108,12 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0552147
 anchor_top = 0.557471
-anchor_right = 0.773006
+anchor_right = 0.963191
 anchor_bottom = 0.821839
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wix26")
-text = "Sun Level: 1"
+text = "SUN LEVEL: 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="WaterLVL" type="Label" parent="Cell Data"]
@@ -121,66 +121,57 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0644172
 anchor_top = 0.793103
-anchor_right = 0.782209
+anchor_right = 1.02454
 anchor_bottom = 1.05747
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wix26")
-text = "Water Level: 1"
+text = "WATER LEVEL: 1"
 metadata/_edit_use_anchors_ = true
 
 [node name="Game Over" type="Panel" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.376736
-anchor_top = 0.348765
-anchor_right = 0.659722
-anchor_bottom = 0.617284
+anchor_left = 0.309028
+anchor_top = 0.319444
+anchor_right = 0.677951
+anchor_bottom = 0.669753
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_wix26")
 theme_override_styles/panel = SubResource("StyleBoxFlat_wskkb")
 metadata/_edit_use_anchors_ = true
 
-[node name="Title" type="Label" parent="Game Over"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Over"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0552147
-anchor_top = 0.0574715
-anchor_right = 0.96319
-anchor_bottom = 0.321839
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Title" type="Label" parent="Game Over/VBoxContainer"]
+custom_minimum_size = Vector2(0, 72.915)
+layout_mode = 2
 theme = ExtResource("2_wix26")
 text = "Results"
 horizontal_alignment = 1
+vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Score" type="Label" parent="Game Over"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0460123
-anchor_top = 0.275862
-anchor_right = 0.763804
-anchor_bottom = 0.54023
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Score" type="Label" parent="Game Over/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "Sun Level: 1"
+text = "SCORE"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Results" type="Label" parent="Game Over"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.0552147
-anchor_top = 0.511494
-anchor_right = 0.773006
-anchor_bottom = 0.775862
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Results" type="Label" parent="Game Over/VBoxContainer"]
+layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "Water Level: 1"
+text = "Results"
+horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Save Load Menu" type="Panel" parent="."]
@@ -221,20 +212,115 @@ vertical_alignment = 1
 [node name="Save" type="Button" parent="Save Load Menu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "Save"
+text = "SAVE"
 
 [node name="Load" type="Button" parent="Save Load Menu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "Load
-"
+text = "LOAD"
 
 [node name="Undo" type="Button" parent="Save Load Menu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "Undo"
+text = "UNDO"
 
 [node name="Recover" type="Button" parent="Save Load Menu/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_wix26")
-text = "recover"
+text = "RECOVER"
+
+[node name="Langauge" type="Button" parent="Save Load Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wix26")
+text = "🌐"
+
+[node name="Controls" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchor_left = 0.0121528
+anchor_top = 0.371914
+anchor_right = 0.354167
+anchor_bottom = 0.978395
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Up" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 64
+text = "🡅"
+
+[node name="Down" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -128.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 64
+text = "🡇"
+
+[node name="Left" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = 64.0
+grow_vertical = 2
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 64
+text = "🡄"
+
+[node name="Right" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 64
+text = "🡆"
+
+[node name="Action" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 64
+text = "🌱"

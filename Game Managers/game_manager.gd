@@ -14,6 +14,7 @@ static var current_turn: int = 0:
 		instance.turn_updated.emit(value)
 var score: int = 0:
 	set(value):
+		score = value
 		score_updated.emit(value)
 
 # Signals for turn events
@@ -34,7 +35,7 @@ static func next_turn():
 	
 	current_turn += 1
 	instance.new_turn.emit(current_turn)
-	print("Turn %d has started." % current_turn)
+	#print("Turn %d has started." % current_turn)
 	
 	if current_turn == instance.number_of_turns:
 		instance.end_game()
@@ -46,7 +47,6 @@ static func get_score() -> int:
 
 static func add_score(value: int) -> void:
 	instance.score += value
-	print(instance.score_updated.get_connections())
 	instance.score_updated.emit(instance.score)
 
 

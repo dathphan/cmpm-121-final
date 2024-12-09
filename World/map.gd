@@ -43,7 +43,7 @@ func give_cell_resources() -> void:
 
 func update_plants() -> void:
 	for plant in plants:
-		print(plant)
+		#print(plant)
 		plant.check_growth_conditions()
 
 
@@ -199,6 +199,7 @@ func create_plant_from_data(cell: Cell, plant_data: PlantData, stage: int) -> bo
 	new_plant.position = cell_coord_to_pos(cell.coord)
 	plant_container.add_child(new_plant)
 	new_plant.initialize(cell, self, plant_data)
+	new_plant.current_stage = stage
 	add_plant(new_plant)
 	cell.set_plant(new_plant)
 	plant_status_changed.emit(cell)

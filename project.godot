@@ -15,6 +15,11 @@ run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=2400
+window/size/viewport_height=1080
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/sprout_lands_premium_tilesets/plugin.cfg")
@@ -32,10 +37,15 @@ sow={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://cmpm-121-f3-translations.en.translation", "res://cmpm-121-f3-translations.es.translation", "res://cmpm-121-f3-translations.fr.translation", "res://cmpm-121-f3-translations.ar.translation")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
 
 [sprout_lands_premium_tilesets]
 

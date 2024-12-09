@@ -1,0 +1,21 @@
+,en,es,fr,ar
+HARVESTED,harvested,cosechado,récolté,تم الحصاد
+DAY,day,día,jour,يوم
+MENU,menu,menú,menu,قائمة
+SAVE,save,guardar,sauvegarder,حفظ
+LOAD,load,cargar,charger,تحميل
+UNDO,undo,deshacer,annuler,تراجع
+RECOVER,recover,recuperar,récupérer,استعادة
+,,,
+CURRENT_CELL,current tile,baldosa actual,tuile actuelle,البلاطة الحالية
+PLANT,plant,planta,plante,نبات
+SUN LEVEL,sun level,nivel de sol,niveau de soleil,مستوى الشمس
+WATER LEVEL,water level,nivel de agua,niveau d'eau,مستوى الماء
+,,,
+CUCUMBER,cucumber,pepino,concombre,خيار
+LETTUCE,lettuce,lechuga,laitue,خس
+PARSNIP,parsnip,chirivía,panais,جزر أبيض
+WHEAT,wheat,trigo,blé,قمح
+,,,
+WIN,A Great Harvest!! You Won !!!,¡¡Una gran cosecha!! ¡¡Ganaste!!!,Une grande récolte !! Vous avez gagné !!!,حصاد رائع!! لقد فزت!!!
+LOSE,A Poor Harvest. You lost !!!,Una cosecha pobre. ¡¡Perdiste!!!,Une mauvaise récolte. Vous avez perdu !!!,حصاد ضعيف. لقد خسرت!!!

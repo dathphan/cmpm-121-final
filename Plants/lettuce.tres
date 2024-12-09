@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_2piwg")
-plant_name = "Lettuce"
+plant_name = "LETTUCE"
 min_water = 5.0
 min_sun = 1.5
-preferred_neighbor_plants = Array[String](["Parsnip"])
+preferred_neighbor_plants = Array[String](["PARSNIP"])
 plant_sprites = Rect2i(0, 112, 64, 16)

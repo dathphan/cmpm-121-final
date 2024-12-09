@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://d13guk63b1gb8"
+
+[deps]
+
+files=["res://cmpm-121-f3-translations.en.translation", "res://cmpm-121-f3-translations.es.translation", "res://cmpm-121-f3-translations.fr.translation", "res://cmpm-121-f3-translations.ar.translation"]
+
+source_file="res://cmpm-121-f3-translations.csv"
+dest_files=["res://cmpm-121-f3-translations.en.translation", "res://cmpm-121-f3-translations.es.translation", "res://cmpm-121-f3-translations.fr.translation", "res://cmpm-121-f3-translations.ar.translation"]
+
+[params]
+
+compress=true
+delimiter=0

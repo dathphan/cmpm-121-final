@@ -38,7 +38,7 @@ func check_valid_neighbors() -> bool:
 func check_growth_conditions() -> void:
 	var water: float = cell.get_water()
 	var sun: float = cell.get_sun()
-	print(water, sun)
+	#print(water, sun)
 	if water >= plant_data.min_water and sun >= plant_data.min_sun and check_valid_neighbors():
 		grow()
 
