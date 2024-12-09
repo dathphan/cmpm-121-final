@@ -98,6 +98,15 @@ func move_target(direction: Vector2i):
 	player_moved_to.emit(map.get_cell_from_coord(_target_cell))
 	_prev_direction = direction
 
+
+func set_pos(coord: Vector2i):
+	_target_cell = coord
+	_target_pos = get_target_position()
+	position = _target_pos
+	
+	player_moved_to.emit(map.get_cell_from_coord(_target_cell))
+
+
 func on_game_end(_a):
 	game_active = false
 

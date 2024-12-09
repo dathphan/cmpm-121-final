@@ -84,9 +84,7 @@ func load_recover_save() -> void:
 
 func load_save(save: Save):
 	map.deserialize_grid(save.map)
-	player._target_pos = map.cell_coord_to_pos(save.player_target_cell)
-	player.position = player._target_pos
-	player._target_cell = save.player_target_cell
+	player.set_pos(save.player_target_cell)
 	player.move_count = save.move_count
 	GameManager.instance.current_turn = save.turn
 	GameManager.instance.score = save.score

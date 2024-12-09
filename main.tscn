@@ -270,7 +270,6 @@ grow_vertical = 1
 theme_override_font_sizes/font_size = 128
 
 [node name="Controls" parent="CanvasLayer/UI Manager" index="5"]
-visible = false
 modulate = Color(1, 1, 1, 0.701961)
 anchor_left = 0.0120833
 anchor_top = 0.978704
