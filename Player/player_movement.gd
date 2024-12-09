@@ -19,6 +19,8 @@ const MIN_DIST = 0.001
 const DEADZONE = 0.5
 var game_active: bool = true
 
+static var instance: Player
+
 # Signal for player movement
 signal player_moved(direction: Vector2i)
 signal player_moved_to(cell: Cell)
@@ -26,6 +28,7 @@ signal player_moved_to(cell: Cell)
 
 # Called when the node enters the scene tree for the first time
 func _ready():
+	instance = self
 	_target_pos = position
 	_target_cell = map.pos_to_cell_coord(_target_pos)
 	

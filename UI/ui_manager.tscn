@@ -9,7 +9,7 @@ bg_color = Color(0.611765, 0.898039, 0.854902, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wskkb"]
 bg_color = Color(0.945098, 0.607843, 0.607843, 1)
 
-[node name="UI Manager" type="Control" node_paths=PackedStringArray("harvested_text", "day_display", "current_cell", "current_cell_plant", "current_cell_sun", "current_cell_water", "game_over_panel", "score_display", "results_display")]
+[node name="UI Manager" type="Control" node_paths=PackedStringArray("harvested_text", "day_display", "current_cell", "current_cell_plant", "current_cell_sun", "current_cell_water", "game_over_panel", "score_display", "results_display", "save_load_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +26,7 @@ current_cell_water = NodePath("Cell Data/WaterLVL")
 game_over_panel = NodePath("Game Over")
 score_display = NodePath("Game Over/Score")
 results_display = NodePath("Game Over/Results")
+save_load_panel = NodePath("Save Load Menu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Plant Score" type="Label" parent="."]
@@ -181,3 +182,59 @@ grow_vertical = 2
 theme = ExtResource("2_wix26")
 text = "Water Level: 1"
 metadata/_edit_use_anchors_ = true
+
+[node name="Save Load Menu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 890.0
+offset_top = 17.0
+offset_right = -23.0
+offset_bottom = -292.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wix26")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Save Load Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 28.0
+offset_right = -22.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_wix26")
+
+[node name="Label" type="Label" parent="Save Load Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+theme = ExtResource("2_wix26")
+theme_override_font_sizes/font_size = 32
+text = "MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Save" type="Button" parent="Save Load Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wix26")
+text = "Save"
+
+[node name="Load" type="Button" parent="Save Load Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wix26")
+text = "Load
+"
+
+[node name="Undo" type="Button" parent="Save Load Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wix26")
+text = "Undo"
+
+[node name="Recover" type="Button" parent="Save Load Menu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_wix26")
+text = "recover"

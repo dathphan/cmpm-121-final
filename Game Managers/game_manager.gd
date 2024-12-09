@@ -1,18 +1,25 @@
 class_name GameManager extends Node
 
+# Object References
+static var instance: GameManager
+@export var map: Map
+
 # Parameters
 @export var number_of_turns = 31
 
-# Singleton instance
-static var instance: GameManager
-
 # Current Stats
-static var current_turn: int = 0
-var score: int = 0
+static var current_turn: int = 0:
+	set(value):
+		current_turn = value
+		instance.turn_updated.emit(value)
+var score: int = 0:
+	set(value):
+		score_updated.emit(value)
 
 # Signals for turn events
 signal score_updated(score: int)
 signal new_turn(turn: int)
+signal turn_updated(turn: int)
 	# UI Manager: update_day()
 signal game_ended(score: int)
 

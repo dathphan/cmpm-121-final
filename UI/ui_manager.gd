@@ -19,6 +19,9 @@ static var instance: UIManager
 @export var score_display: Label
 @export var results_display: Label
 
+@export_category("Save Load Elements")
+@export var save_load_panel: Panel
+
 const WIN_CONDITION = 10
 var harvested: int = 0
 var current_day: int = 0
@@ -69,6 +72,14 @@ func enable_game_over_ui(score: int) -> void:
 	else:
 		results_display.text = "A Poor Harvest. You lost !!!"
 
+
 func _process(delta: float) -> void:
-	if (Input.is_physical_key_pressed(KEY_SPACE)):
-		enable_game_over_ui(100)
+	if (Input.is_physical_key_pressed(KEY_ESCAPE)):
+		toggle_menu()
+
+
+func toggle_menu() -> void:
+	if save_load_panel.visible:
+		save_load_panel.hide()
+	else:
+		save_load_panel.show()

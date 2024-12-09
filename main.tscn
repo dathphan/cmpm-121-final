@@ -130,11 +130,14 @@ sources/0 = SubResource("TileSetAtlasSource_0kpje")
 [node name="Main" type="Node2D"]
 texture_filter = 1
 
-[node name="GameManager" type="Node" parent="."]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("map")]
 script = ExtResource("1_xgfuw")
+map = NodePath("../Map")
 
-[node name="SaveLoadSystem" type="Node" parent="GameManager"]
+[node name="SaveLoadSystem" type="Node" parent="GameManager" node_paths=PackedStringArray("map", "player")]
 script = ExtResource("2_ginba")
+map = NodePath("../../Map")
+player = NodePath("../../Player")
 
 [node name="Map" type="Node2D" parent="." node_paths=PackedStringArray("plant_container", "tilled_tilemaps", "ground_tilemaps", "obstacle_tilemaps")]
 script = ExtResource("1_8g07x")
@@ -215,6 +218,7 @@ tile_set = SubResource("TileSet_lwte8")
 unique_name_in_owner = true
 position = Vector2(576, 320)
 map = NodePath("../Map")
+metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(508, 303)
@@ -225,10 +229,16 @@ zoom = Vector2(2, 2)
 [node name="UI Manager" parent="CanvasLayer" instance=ExtResource("17_ee42f")]
 
 [connection signal="game_ended" from="GameManager" to="CanvasLayer/UI Manager" method="enable_game_over_ui"]
+[connection signal="new_turn" from="GameManager" to="GameManager/SaveLoadSystem" method="autosave"]
 [connection signal="new_turn" from="GameManager" to="Map" method="new_turn"]
-[connection signal="new_turn" from="GameManager" to="CanvasLayer/UI Manager" method="update_day"]
 [connection signal="score_updated" from="GameManager" to="CanvasLayer/UI Manager" method="update_score"]
+[connection signal="turn_updated" from="GameManager" to="CanvasLayer/UI Manager" method="update_day"]
 [connection signal="player_moved_to" from="Player" to="CanvasLayer/UI Manager" method="update_current_cell"]
 [connection signal="action_performed" from="Player/Actions" to="CanvasLayer/UI Manager" method="update_current_cell"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Save" to="GameManager/SaveLoadSystem" method="manually_save"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Load" to="GameManager/SaveLoadSystem" method="load_manual_save"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Undo" to="GameManager/SaveLoadSystem" method="load_prev_autosave"]
+[connection signal="pressed" from="CanvasLayer/UI Manager/Save Load Menu/VBoxContainer/Recover" to="GameManager/SaveLoadSystem" method="load_recover_save"]
 
 [editable path="Player"]
+[editable path="CanvasLayer/UI Manager"]
